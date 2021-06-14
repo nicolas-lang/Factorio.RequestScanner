@@ -1,11 +1,11 @@
 {
-	"name": "nco-ModTemplate",
+	"name": "nco-RequestScanner",
 	"version": "0.0.1",
-	"title": "Mod Template",
+	"title": "RequestScanner",
 	"author": "Karoschl",
 	"contact": "",
 	"homepage": "",
-	"description": "Basic Mod Template, check github for details",
+	"description": "Adds a combinator reading logistic request count from the logistic network it's placed in. Based on Ghostscanner by Optera",
 	"factorio_version": "1.1",
 	"dependencies": [
 		"base >= 1.0"
