@@ -2,7 +2,12 @@
 -- See LICENSE in the project directory for license information.
 -- constant prototypes names
 local SENSOR = "request-scanner"
-local Item_count_lookup = {}
+local UpdateEventHandlers = _G.UpdateEventHandlers
+local OnEntityCreated = _G.OnEntityCreated
+local OnEntityRemoved = _G.OnEntityRemoved
+local OnNthTick = _G.OnNthTick
+local OnTick = _G.OnTick
+local NthTickEvent? _G.NthTickEvent
 
 ---- MOD SETTINGS ----
 local UpdateInterval = settings.global["request-scanner_update_interval"].value
@@ -177,7 +182,6 @@ do
 			local round = math.ceil
 			if InvertSign then round = math.floor end
 			for _, signal in pairs(signals) do
-				local ceil = math.ceil
 				local prototype = game.item_prototypes[signal.signal.name]
 				if prototype then
 					local stack_size = prototype.stack_size

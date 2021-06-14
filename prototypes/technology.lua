@@ -1,4 +1,4 @@
--- add to circuit-network-3 if exists otherwise create tech
+ -- add to circuit-network-3 if exists otherwise create tech
 local mytech = "circuit-network-2"
 
 if data.raw["technology"]["circuit-network-2"] then
@@ -6,7 +6,7 @@ if data.raw["technology"]["circuit-network-2"] then
 end
 
 if data.raw["technology"][mytech] then
-  table.insert( data.raw["technology"][mytech].effects, { type = "unlock-recipe", recipe = "request-scanner" } )  
+  table.insert( data.raw["technology"][mytech].effects, { type = "unlock-recipe", recipe = "request-scanner" } )
 else
   data:extend({
     {

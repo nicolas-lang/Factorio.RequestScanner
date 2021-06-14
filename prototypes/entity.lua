@@ -44,6 +44,4 @@ inv_sensor.sprites = make_4way_animation_from_spritesheet(
   })
 
 inv_sensor.item_slot_count = 1000
-    
-    
 data:extend({ inv_sensor })
