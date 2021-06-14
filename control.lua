@@ -2,13 +2,8 @@
 -- See LICENSE in the project directory for license information.
 -- constant prototypes names
 local SENSOR = "request-scanner"
-local UpdateEventHandlers = _G.UpdateEventHandlers
-local OnEntityCreated = _G.OnEntityCreated
-local OnEntityRemoved = _G.OnEntityRemoved
 local OnNthTick = _G.OnNthTick
 local OnTick = _G.OnTick
-local NthTickEvent = _G.NthTickEvent
-
 
 ---- MOD SETTINGS ----
 local UpdateInterval = settings.global["request-scanner_update_interval"].value
@@ -40,7 +35,7 @@ end)
 
 ---- EVENTS ----
 do -- create & remove
-	function OnEntityCreated(event)
+	local function OnEntityCreated(event)
 		local entity = event.created_entity or event.entity
 		if entity then
 			if entity.name == SENSOR then
@@ -56,7 +51,7 @@ do -- create & remove
 		end
 	end
 
-	function RemoveSensor(id)
+	local function RemoveSensor(id)
 		for i = #global.RequestScanners, 1, -1 do
 			if id == global.RequestScanners[i].ID then
 				table.remove(global.RequestScanners,i)
@@ -65,7 +60,7 @@ do -- create & remove
 		UpdateEventHandlers()
 	end
 
-	function OnEntityRemoved(event)
+	local function OnEntityRemoved(event)
 		if event.entity.name == SENSOR then
 			RemoveSensor(event.entity.unit_number)
 		end
@@ -73,7 +68,7 @@ do -- create & remove
 end
 
 do -- tick handlers
-	function UpdateEventHandlers()
+	local function UpdateEventHandlers()
 		-- unsubscribe tick handlers
 		script.on_nth_tick(nil)
 		script.on_event(defines.events.on_tick, nil)
@@ -104,7 +99,7 @@ do -- tick handlers
 	end
 
 	-- runs when #global.RequestScanners <= UpdateInterval/2
-	function OnNthTick(NthTickEvent)
+	function OnNthTick(_)
 		if global.UpdateIndex > #global.RequestScanners then
 			global.UpdateIndex = 1
 		end
@@ -193,7 +188,7 @@ do
 		return signals
 	end
 
-	function UpdateSensor(requestScanner)
+	local function UpdateSensor(requestScanner)
 		-- handle invalidated sensors
 		if not requestScanner.entity.valid then
 			RemoveSensor(requestScanner.ID)
@@ -258,7 +253,7 @@ do
 		init_events()
 	end)
 
-	script.on_configuration_changed(function(data)
+	script.on_configuration_changed(function(_)
 		global.RequestScanners = global.RequestScanners or {}
 		global.UpdateIndex = global.UpdateIndex or 1
 		init_events()
