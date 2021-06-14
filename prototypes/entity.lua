@@ -1,3 +1,4 @@
+local make_4way_animation_from_spritesheet = _G.make_4way_animation_from_spritesheet
 local inv_sensor = table.deepcopy(data.raw["constant-combinator"]["constant-combinator"])
 inv_sensor.name = "request-scanner"
 inv_sensor.icon = "__nco-RequestScanner__/graphics/icons/request-scanner.png"

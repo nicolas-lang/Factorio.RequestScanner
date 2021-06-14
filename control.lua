@@ -7,7 +7,8 @@ local OnEntityCreated = _G.OnEntityCreated
 local OnEntityRemoved = _G.OnEntityRemoved
 local OnNthTick = _G.OnNthTick
 local OnTick = _G.OnTick
-local NthTickEvent? _G.NthTickEvent
+local NthTickEvent = _G.NthTickEvent
+
 
 ---- MOD SETTINGS ----
 local UpdateInterval = settings.global["request-scanner_update_interval"].value
